@@ -1163,10 +1163,22 @@ function bindDietEvents() {
   $('#food-add-custom')?.addEventListener('click', () => {
     const name = $('#food-custom-name')?.value?.trim();
     if (!name) { toast('请输入食物名称'); return; }
-    const pro = parseFloat($('#food-custom-pro')?.value) || 0;
-    const carb = parseFloat($('#food-custom-carb')?.value) || 0;
-    const fat = parseFloat($('#food-custom-fat')?.value) || 0;
-    const kcal = parseFloat($('#food-custom-kcal')?.value) || 0;
+    let pro = parseFloat($('#food-custom-pro')?.value) || 0;
+    let carb = parseFloat($('#food-custom-carb')?.value) || 0;
+    let fat = parseFloat($('#food-custom-fat')?.value) || 0;
+    let kcal = parseFloat($('#food-custom-kcal')?.value) || 0;
+    
+    // 如果营养数值全为0，尝试从食物库模糊匹配
+    if (pro === 0 && carb === 0 && fat === 0 && kcal === 0) {
+      const match = foodDB.find(f => f.name.includes(name) || name.includes(f.name.split('(')[0]));
+      if (match) {
+        pro = match.protein; carb = match.carb; fat = match.fat; kcal = match.kcal;
+        toast('已从食物库匹配「'+match.name+'」，自动填充营养数值 ✅');
+      } else {
+        toast('⚠️ 未填写营养数值且未匹配到食物库，已添加为0热量食物');
+      }
+    }
+    
     const meal = $('#food-meal')?.value || 'breakfast';
     if (!appData.diet.foodLog) appData.diet.foodLog = { breakfast:[], lunch:[], dinner:[], snack:[] };
     appData.diet.foodLog[meal].push({ name, protein:pro, carb, fat, kcal });
