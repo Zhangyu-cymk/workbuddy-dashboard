@@ -963,14 +963,14 @@ function getDefaultData() {
       '恋爱脑测试2.0 | 互动 | 升级版恋爱脑测试，加入更多情侣专属问题 | 4'
     ], schedule: ['互换衣橱挑战','日常随拍','恋爱脑测试','互动回复','情侣默契考验','周末Vlog','粉丝互动'], lastUpdate: '' },
     douyin: { boomVideos: [
-      '情侣互换穿搭出门 | 小羊和她的猫 | 穿搭变装 | 85万 | https://v.douyin.com/example1 | 爆点：反差感+真实互动+路人反应+穿搭对比强烈',
-      '和女友的甜蜜日常vlog | 两颗糖 | 甜蜜日常 | 120万 | https://v.douyin.com/example2 | 爆点：真实生活感+温柔BGM+眼神互动+日常小细节',
-      '情侣默契问答挑战 | 糖糖和果果 | 互动挑战 | 67万 | https://v.douyin.com/example3 | 爆点：问答悬念+搞笑惩罚+CP感+评论区互动高',
-      '奶油风情侣写真花絮 | 橘子汽水 | 甜蜜日常 | 93万 | https://v.douyin.com/example4 | 爆点：高颜值+氛围感+拍摄教程+成片对比',
-      '八月好运情侣版 | 多位达人 | 情感语录 | 150万 | https://v.douyin.com/example5 | 爆点：蹭热点+许愿文案+甜蜜约定+季节氛围',
-      '丝滑入场舞情侣合拍 | 桃子和栗子 | 音乐舞蹈 | 78万 | https://v.douyin.com/example6 | 爆点：舞蹈挑战+BGM卡点+CP默契+丝滑转场',
-      '女友给我搭配衣服vs我自己 | 麦子和面包 | 穿搭变装 | 55万 | https://v.douyin.com/example7 | 爆点：反差效果+投票互动+搞笑元素+审美差异',
-      '情侣暑期旅行vlog | 深海与星光 | 旅行vlog | 110万 | https://v.douyin.com/example8 | 爆点：旅行攻略+美景+情侣互动+热门目的地'
+      '情侣互换穿搭出门 | 小羊和她的猫 | 穿搭变装 | 85万 | 情侣互换穿搭出门 抖音 | 爆点：反差感+真实互动+路人反应+穿搭对比强烈',
+      '和女友的甜蜜日常vlog | 两颗糖 | 甜蜜日常 | 120万 | 和女友的甜蜜日常vlog 抖音 | 爆点：真实生活感+温柔BGM+眼神互动+日常小细节',
+      '情侣默契问答挑战 | 糖糖和果果 | 互动挑战 | 67万 | 情侣默契问答挑战 抖音 | 爆点：问答悬念+搞笑惩罚+CP感+评论区互动高',
+      '奶油风情侣写真花絮 | 橘子汽水 | 甜蜜日常 | 93万 | 奶油风情侣写真花絮 抖音 | 爆点：高颜值+氛围感+拍摄教程+成片对比',
+      '八月好运情侣版 | 多位达人 | 情感语录 | 150万 | 八月好运情侣版 抖音 | 爆点：蹭热点+许愿文案+甜蜜约定+季节氛围',
+      '丝滑入场舞情侣合拍 | 桃子和栗子 | 音乐舞蹈 | 78万 | 丝滑入场舞情侣合拍 抖音 | 爆点：舞蹈挑战+BGM卡点+CP默契+丝滑转场',
+      '女友给我搭配衣服vs我自己 | 麦子和面包 | 穿搭变装 | 55万 | 女友给我搭配衣服vs我自己 抖音 | 爆点：反差效果+投票互动+搞笑元素+审美差异',
+      '情侣暑期旅行vlog | 深海与星光 | 旅行vlog | 110万 | 情侣暑期旅行vlog 抖音 | 爆点：旅行攻略+美景+情侣互动+热门目的地'
     ], remixIdeas: [
       '情侣互换穿搭出门 | 模仿爆款框架，换成你们自己的衣柜，加入出门后路人真实反应 | 5',
       '默契问答挑战情侣版 | 设计5-8个专属问题，加入答错后的搞笑惩罚，结尾甜蜜反转 | 5',
@@ -2249,34 +2249,26 @@ function bindDouyinEvents() {
   });
 }
 
-// 通过链接打开视频
+// 通过链接打开视频 - 直接在新标签页打开，避免iframe被阻止
 function openVideoByLink(link, title) {
-  const modal = $('#videoModal');
-  const frame = $('#videoFrame');
-  if (!modal || !frame) return;
-
-  // 判断链接类型
-  let embedUrl = '';
+  if (!link) return;
+  
+  let openUrl = link;
+  
+  // 如果是抖音短链接或搜索关键词，构造搜索URL
   if (link.includes('douyin.com') || link.includes('iesdouyin.com')) {
-    // 抖音链接 - 尝试用搜索方式
-    const keyword = title || link;
-    embedUrl = 'https://www.douyin.com/search/' + encodeURIComponent(keyword) + '?type=general';
-  } else if (link.includes('bilibili.com')) {
-    // B站链接
-    const bvMatch = link.match(/BV[\w]+/);
-    if (bvMatch) {
-      embedUrl = 'https://player.bilibili.com/player.html?bvid=' + bvMatch[0] + '&autoplay=1';
-    }
+    // 抖音链接直接打开
+    openUrl = link;
   } else if (link.startsWith('http')) {
-    // 直接打开
-    embedUrl = link;
+    // 其他链接直接打开
+    openUrl = link;
   } else {
-    embedUrl = 'https://www.douyin.com/search/' + encodeURIComponent(link) + '?type=general';
+    // 纯文本搜索关键词
+    openUrl = 'https://www.douyin.com/search/' + encodeURIComponent(title || link) + '?type=general';
   }
-
-  frame.src = embedUrl;
-  modal.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
+  
+  // 直接在新标签页打开
+  window.open(openUrl, '_blank');
 }
 
 // ==================== 面板5: 我的账户 ====================
