@@ -605,6 +605,60 @@
     color: var(--buzz-green-dark);
   }
 
+  /* 身体数据表单 */
+  .body-stats-toggle { user-select: none; }
+  .body-stats-toggle:hover { color: var(--buzz-green); }
+  .body-stats-form { 
+    background: #FAFAFA; border-radius: 12px; padding: 12px;
+    border: 1px solid #EEE;
+  }
+  .stat-row { display: flex; gap: 8px; }
+  .stat-field { flex: 1; }
+  .stat-label { font-size: 11px; color: var(--text-light); margin-bottom: 3px; }
+
+  /* 目标选择 */
+  .goal-tabs { display: flex; gap: 6px; }
+  .goal-tab {
+    flex: 1; padding: 8px 4px; border-radius: 12px; font-size: 12px;
+    font-weight: 600; border: 2px solid #E0E0E0; background: #fff;
+    color: var(--text-light); cursor: pointer; text-align: center;
+    transition: all 0.2s; font-family: inherit;
+  }
+  .goal-tab.active {
+    border-color: var(--buzz-purple); background: #EDE7F6;
+    color: var(--buzz-purple); font-weight: 700;
+  }
+  .goal-desc {
+    background: #F5F5F5; border-radius: 8px; padding: 8px 10px;
+  }
+
+  /* 计算结果卡片 */
+  .calc-result {
+    background: linear-gradient(135deg, #F1F8E9, #EDE7F6);
+    border-radius: 14px; padding: 14px;
+    border: 1.5px solid rgba(123,79,191,0.15);
+  }
+  .calc-result-row {
+    display: flex; justify-content: space-between; margin-bottom: 8px;
+    font-size: 13px;
+  }
+  .calc-result-row:last-child { margin-bottom: 0; }
+  .calc-result-label { color: var(--text-light); }
+  .calc-result-val { font-weight: 700; color: var(--text); }
+  .calc-result-tag {
+    display: inline-block; padding: 2px 8px; border-radius: 10px;
+    font-size: 10px; font-weight: 600;
+  }
+  .calc-tag-green { background: #E8F5E9; color: #2E7D32; }
+  .calc-tag-orange { background: #FFF3E0; color: #E65100; }
+  .calc-tag-purple { background: #EDE7F6; color: #4527A0; }
+  .calc-tag-blue { background: #E3F2FD; color: #1565C0; }
+  .calc-tag-red { background: #FFEBEE; color: #C62828; }
+  .calc-formula {
+    font-size: 10px; color: var(--text-light); margin-top: 8px;
+    padding-top: 8px; border-top: 1px dashed rgba(0,0,0,0.1);
+  }
+
   /* ===== Keep 风格饮食模块 ===== */
   .nutri-overview { margin-bottom: 12px; }
   .nutri-row { display: flex; gap: 8px; margin-bottom: 6px; }
@@ -966,6 +1020,9 @@ function updateHeaderDate() {
 
 // ==================== 面板1: 每日饮食 ====================
 const mealLabels = { breakfast:'🥣 早餐', lunch:'🍗 午餐', dinner:'🥗 晚餐', snack:'🍪 加餐' };
+const activityLevelLabels = {
+  sedentary: '久坐不动', light: '轻度活动', moderate: '中度活动', active: '高度活跃', extreme: '极度活跃'
+};
 const mealPlans = {
   bulk: { name: '增肌方案', protein: 150, carb: 250, fat: 55, kcal: 2200, emoji: '💪' },
   cut: { name: '减脂方案', protein: 130, carb: 150, fat: 40, kcal: 1600, emoji: '🔥' },
@@ -1005,7 +1062,25 @@ function renderDietPanel() {
   const fl = appData.diet.foodLog || { breakfast: [], lunch: [], dinner: [], snack: [] };
   const w = appData.diet.weight || { today: 65.0, target: 58.0, history: {} };
   const cp = appData.diet.currentPlan || 'maintain';
+  const bodyStats = appData.diet.bodyStats || { height: 165, age: 25, gender: 'female', activity: 'moderate' };
+  const goal = appData.diet.goal || 'maintain';
   const todayStr = getTodayStr();
+
+  // 活动水平列表
+  const activityLevels = [
+    { value: 'sedentary', label: '🪑 久坐不动（几乎不运动）', factor: 1.2 },
+    { value: 'light', label: '🚶 轻度活动（每周1-3次运动）', factor: 1.375 },
+    { value: 'moderate', label: '🏃 中度活动（每周3-5次运动）', factor: 1.55 },
+    { value: 'active', label: '💪 高度活跃（每周6-7次运动）', factor: 1.725 },
+    { value: 'extreme', label: '🔥 极度活跃（高强度训练+体力工作）', factor: 1.9 }
+  ];
+
+  // 目标类型
+  const goalTypes = [
+    { key: 'cut', name: '减脂', emoji: '🔥', desc: '热量缺口约 300-500 kcal/天，高蛋白保留肌肉' },
+    { key: 'maintain', name: '维持', emoji: '⚖️', desc: '维持当前体重，摄入≈消耗' },
+    { key: 'bulk', name: '增肌', emoji: '💪', desc: '热量盈余约 200-400 kcal/天，配合力量训练' }
+  ];
 
   // 汇总各餐营养
   const calcMeal = (arr) => ({
@@ -1125,9 +1200,9 @@ function renderDietPanel() {
       <button class="btn btn-sm btn-danger btn-full" id="food-clear-all">🗑 清空今日记录</button>
     </div>
 
-    <!-- ⚖️ 体重管理 -->
+    <!-- ⚖️ 体重管理 + 智能饮食规划 -->
     <div class="weight-section" style="margin-top:14px;">
-      <div style="font-size:14px;font-weight:700;margin-bottom:10px;">⚖️ 体重管理</div>
+      <div style="font-size:14px;font-weight:700;margin-bottom:10px;">⚖️ 体重管理 · 智能规划</div>
       <div class="weight-input-row">
         <div class="weight-label">今日体重</div>
         <input class="input-sm" id="weight-today" type="number" step="0.1" value="${w.today}" style="width:80px;">
@@ -1140,7 +1215,54 @@ function renderDietPanel() {
         <span class="weight-diff">${diffText}</span>
       </div>
       <button class="btn btn-sm btn-primary" id="weight-save" style="margin-bottom:8px;">💾 记录体重</button>
-      <div style="font-size:12px;font-weight:600;color:var(--text-light);margin-bottom:4px;">📈 近7天趋势</div>
+      
+      <!-- 🔬 身体数据（可选，用于精准计算） -->
+      <div class="body-stats-toggle" id="body-stats-toggle" style="margin-top:8px;font-size:12px;font-weight:600;color:var(--buzz-purple);cursor:pointer;display:flex;align-items:center;gap:4px;">
+        <span id="body-stats-arrow">▶</span> 🔬 身体数据（点击展开，用于精准计算）
+      </div>
+      <div class="body-stats-form" id="body-stats-form" style="display:none;margin-top:8px;">
+        <div class="stat-row">
+          <div class="stat-field">
+            <div class="stat-label">身高 cm</div>
+            <input class="input-sm" id="body-height" type="number" value="${bodyStats.height}" style="width:100%;">
+          </div>
+          <div class="stat-field">
+            <div class="stat-label">年龄</div>
+            <input class="input-sm" id="body-age" type="number" value="${bodyStats.age}" style="width:100%;">
+          </div>
+          <div class="stat-field">
+            <div class="stat-label">性别</div>
+            <select id="body-gender" style="width:100%;padding:6px;border:1.5px solid #E0E0E0;border-radius:8px;font-size:13px;background:#FAFAFA;">
+              <option value="female" ${bodyStats.gender==='female'?'selected':''}>女</option>
+              <option value="male" ${bodyStats.gender==='male'?'selected':''}>男</option>
+            </select>
+          </div>
+        </div>
+        <div style="margin-top:6px;">
+          <div class="stat-label">活动水平</div>
+          <select id="body-activity" style="width:100%;padding:8px;border:1.5px solid #E0E0E0;border-radius:8px;font-size:13px;background:#FAFAFA;">
+            ${activityLevels.map(al => `<option value="${al.value}" ${bodyStats.activity===al.value?'selected':''}>${al.label}</option>`).join('')}
+          </select>
+        </div>
+        <button class="btn btn-sm btn-primary" id="body-stats-save" style="margin-top:8px;width:100%;">💾 保存身体数据</button>
+      </div>
+
+      <!-- 🎯 目标选择 + 一键计算 -->
+      <div style="margin-top:12px;">
+        <div style="font-size:13px;font-weight:600;margin-bottom:6px;color:var(--text);">🎯 选择目标，自动计算</div>
+        <div class="goal-tabs">
+          ${goalTypes.map(g => `<div class="goal-tab${goal===g.key?' active':''}" data-goal="${g.key}">${g.emoji} ${g.name}</div>`).join('')}
+        </div>
+        <div class="goal-desc" id="goal-desc" style="font-size:11px;color:var(--text-light);margin-top:6px;line-height:1.5;">
+          ${goalTypes.find(g=>g.key===goal)?.desc || ''}
+        </div>
+        <button class="btn btn-primary btn-full" id="calc-plan-btn" style="margin-top:8px;">
+          🧮 根据体重自动计算饮食计划
+        </button>
+        <div class="calc-result" id="calc-result" style="display:none;margin-top:8px;"></div>
+      </div>
+
+      <div style="font-size:12px;font-weight:600;color:var(--text-light);margin-bottom:4px;margin-top:12px;">📈 近7天趋势</div>
       <div class="weight-trend">
         ${trendDays.map(d => {
           const h = d.val !== null ? Math.max(8, ((d.val - vMin) / vRange) * 42) : 8;
@@ -1519,6 +1641,169 @@ function bindDietEvents() {
     saveData(appData);
     renderAll();
     toast('体重已记录 ✅');
+  });
+
+  // 身体数据折叠
+  $('#body-stats-toggle')?.addEventListener('click', () => {
+    const form = $('#body-stats-form');
+    const arrow = $('#body-stats-arrow');
+    if (form && arrow) {
+      const isVisible = form.style.display !== 'none';
+      form.style.display = isVisible ? 'none' : 'block';
+      arrow.textContent = isVisible ? '▶' : '▼';
+    }
+  });
+
+  // 身体数据保存
+  $('#body-stats-save')?.addEventListener('click', () => {
+    if (!appData.diet.bodyStats) appData.diet.bodyStats = { height: 165, age: 25, gender: 'female', activity: 'moderate' };
+    appData.diet.bodyStats.height = +($('#body-height')?.value || 165);
+    appData.diet.bodyStats.age = +($('#body-age')?.value || 25);
+    appData.diet.bodyStats.gender = $('#body-gender')?.value || 'female';
+    appData.diet.bodyStats.activity = $('#body-activity')?.value || 'moderate';
+    saveData(appData);
+    toast('身体数据已保存 ✅');
+  });
+
+  // 目标选择 Tab
+  document.querySelectorAll('.goal-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const goalKey = tab.dataset.goal;
+      appData.diet.goal = goalKey;
+      document.querySelectorAll('.goal-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      saveData(appData);
+      
+      // 更新描述
+      const goalTypes = [
+        { key: 'cut', desc: '热量缺口约 300-500 kcal/天，高蛋白保留肌肉' },
+        { key: 'maintain', desc: '维持当前体重，摄入≈消耗' },
+        { key: 'bulk', desc: '热量盈余约 200-400 kcal/天，配合力量训练' }
+      ];
+      const descEl = $('#goal-desc');
+      const g = goalTypes.find(g => g.key === goalKey);
+      if (descEl && g) descEl.textContent = g.desc;
+      
+      toast('目标已切换 ✅');
+    });
+  });
+
+  // ========== 智能计算饮食计划（核心功能） ==========
+  $('#calc-plan-btn')?.addEventListener('click', () => {
+    const weight = parseFloat($('#weight-today')?.value) || appData.diet.weight?.today || 65;
+    const targetWeight = parseFloat($('#weight-target')?.value) || appData.diet.weight?.target || 58;
+    const goal = appData.diet.goal || 'maintain';
+    const bs = appData.diet.bodyStats || { height: 165, age: 25, gender: 'female', activity: 'moderate' };
+    
+    // 活动水平因子
+    const activityFactors = {
+      sedentary: 1.2, light: 1.375, moderate: 1.55, active: 1.725, extreme: 1.9
+    };
+    const af = activityFactors[bs.activity] || 1.55;
+
+    // Mifflin-St Jeor 公式计算 BMR
+    let bmr;
+    if (bs.gender === 'male') {
+      bmr = 10 * weight + 6.25 * bs.height - 5 * bs.age + 5;
+    } else {
+      bmr = 10 * weight + 6.25 * bs.height - 5 * bs.age - 161;
+    }
+
+    // TDEE = BMR × 活动因子
+    const tdee = Math.round(bmr * af);
+
+    // 根据目标调整热量
+    let targetKcal;
+    let kcalLabel;
+    if (goal === 'cut') {
+      targetKcal = Math.round(tdee - 400); // 减脂缺口 400kcal
+      kcalLabel = '减脂（缺口 ~400 kcal）';
+    } else if (goal === 'bulk') {
+      targetKcal = Math.round(tdee + 300); // 增肌盈余 300kcal
+      kcalLabel = '增肌（盈余 ~300 kcal）';
+    } else {
+      targetKcal = tdee;
+      kcalLabel = '维持（摄入≈消耗）';
+    }
+
+    // 营养素配比
+    // 蛋白质：1.6-2.2g/kg（减脂偏高保留肌肉，增肌也高）
+    let proPerKg;
+    if (goal === 'cut') proPerKg = 2.0;
+    else if (goal === 'bulk') proPerKg = 1.8;
+    else proPerKg = 1.6;
+
+    const targetProtein = Math.round(weight * proPerKg);
+
+    // 脂肪：占总热量 20-30%
+    const fatKcal = targetKcal * 0.25;
+    const targetFat = Math.round(fatKcal / 9);
+
+    // 碳水：剩余热量
+    const carbKcal = targetKcal - (targetProtein * 4) - (targetFat * 9);
+    const targetCarb = Math.round(carbKcal / 4);
+
+    // 更新饮食计划输入框
+    const proEl = $('#diet-pro'), carbEl = $('#diet-carb'), fatEl = $('#diet-fat'), kcalEl = $('#diet-kcal');
+    if (proEl) proEl.value = targetProtein;
+    if (carbEl) carbEl.value = targetCarb;
+    if (fatEl) fatEl.value = targetFat;
+    if (kcalEl) kcalEl.value = targetKcal;
+
+    // 更新 appData
+    appData.diet.plan.protein = targetProtein;
+    appData.diet.plan.carb = targetCarb;
+    appData.diet.plan.fat = targetFat;
+    appData.diet.plan.kcal = targetKcal;
+    appData.diet.currentPlan = goal;
+    saveData(appData);
+
+    // 显示计算结果卡片
+    const resultEl = $('#calc-result');
+    if (resultEl) {
+      resultEl.style.display = 'block';
+      const goalEmoji = goal === 'cut' ? '🔥' : goal === 'bulk' ? '💪' : '⚖️';
+      const goalName = goal === 'cut' ? '减脂' : goal === 'bulk' ? '增肌' : '维持';
+      
+      resultEl.innerHTML = `
+        <div style="font-size:13px;font-weight:700;margin-bottom:8px;color:var(--buzz-purple);">
+          ${goalEmoji} 基于体重 ${weight}kg 的${goalName}计划
+        </div>
+        <div class="calc-result-row">
+          <span class="calc-result-label">基础代谢 BMR</span>
+          <span class="calc-result-val">${bmr.toFixed(0)} kcal</span>
+        </div>
+        <div class="calc-result-row">
+          <span class="calc-result-label">每日消耗 TDEE</span>
+          <span class="calc-result-val">${tdee} kcal <span class="calc-result-tag calc-tag-blue">×${af}</span></span>
+        </div>
+        <div class="calc-result-row">
+          <span class="calc-result-label">目标热量</span>
+          <span class="calc-result-val" style="color:${goal==='cut'?'#E53935':goal==='bulk'?'#2E7D32':'#7B4FBF'};">${targetKcal} kcal <span class="calc-result-tag ${goal==='cut'?'calc-tag-red':goal==='bulk'?'calc-tag-green':'calc-tag-purple'}">${kcalLabel}</span></span>
+        </div>
+        <div class="calc-result-row">
+          <span class="calc-result-label">🥩 蛋白质</span>
+          <span class="calc-result-val">${targetProtein}g <span class="calc-result-tag calc-tag-green">${proPerKg}g/kg</span></span>
+        </div>
+        <div class="calc-result-row">
+          <span class="calc-result-label">🍚 碳水</span>
+          <span class="calc-result-val">${targetCarb}g <span class="calc-result-tag calc-tag-orange">${Math.round(targetCarb*4/targetKcal*100)}%</span></span>
+        </div>
+        <div class="calc-result-row">
+          <span class="calc-result-label">🧈 脂肪</span>
+          <span class="calc-result-val">${targetFat}g <span class="calc-result-tag calc-tag-purple">${Math.round(targetFat*9/targetKcal*100)}%</span></span>
+        </div>
+        <div class="calc-formula">
+          📐 Mifflin-St Jeor 公式 · ${bs.gender==='male'?'男':'女'} · ${bs.height}cm · ${bs.age}岁 · ${activityLevelLabels[bs.activity] || '中度活动'}
+        </div>
+        <div style="margin-top:8px;font-size:11px;color:var(--text-light);">
+          💡 已自动填入上方饮食方案，点击「保存饮食计划」即可生效
+        </div>
+      `;
+    }
+
+    renderAll(); // 重新渲染以更新目标tab高亮
+    toast('✅ 已根据体重 '+weight+'kg 自动计算「'+goalName+'」饮食计划');
   });
 
   $('#diet-save-plan')?.addEventListener('click', () => {
