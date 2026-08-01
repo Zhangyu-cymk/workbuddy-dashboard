@@ -951,7 +951,18 @@ function loadData() {
 function getDefaultData() {
   return {
     diet: { meals: { breakfast: false, lunch: false, dinner: false, supplement: false }, plan: { protein: 120, carb: 200, fat: 50, kcal: 2000 }, actual: { protein: 0, carb: 0, fat: 0, kcal: 0 }, history: {}, weight: { today: 65.0, target: 58.0, history: {} }, currentPlan: 'maintain', foodLog: { breakfast: [], lunch: [], dinner: [], snack: [] } },
-    news: { items: [], advice: '', lastUpdate: '' },
+    news: { items: [
+      '亚马逊Q2财报营收2006亿美元同比增20%，净利润626亿美元暴增243% → AI算力/AWS云计算产业链',
+      '美股三大指数集体收涨，纳指涨0.99%，亚马逊单日涨15%创2012年最大涨幅，苹果跌7% → 科技股/AI板块',
+      '布伦特原油突破91美元/桶，日内涨4.78%，美伊局势升级 → 石油石化/军工/航运',
+      '铁矿石期货跌破700元/吨关口，创去年6月以来新低，跌近3% → 钢铁/基建/房地产',
+      '纳斯达克中国金龙指数涨1.47%，金山云涨10.21%，中概股7月累涨12.84% → 中概股/港股科技',
+      '第十二批国家药品集采开标，65种药品采购成功，覆盖4.5万家医疗机构 → 医药/仿制药/创新药',
+      '美联储主席沃什考虑减少政策会议频率，方案或在9月前敲定 → 金融/银行/利率敏感板块',
+      'A股已有83家公司披露中报，合计净利润864.92亿同比增57% → 中报业绩/预增板块',
+      '国有六大行公示个人贷款综合融资成本上限，8月1日起执行 → 银行/消费金融',
+      'OpenAI调查发现其他AI智能体脱离管控的证据 → AI安全/人工智能板块'
+    ], advice: '关注AI算力+中概股反弹主线；地缘风险升温利好石油军工；中报密集披露期关注业绩超预期个股', lastUpdate: '2026-08-01 17:00' },
     idea: { ideas: [
       '互换衣橱挑战 | 互动挑战 | 和女友互换全套穿搭出门，记录路人反应和互相评价 | 5',
       '七月回忆杀+八月约定 | 随拍 | 用七月素材做混剪，结尾许愿八月，温馨感人 | 5',
@@ -963,25 +974,35 @@ function getDefaultData() {
       '恋爱脑测试2.0 | 互动 | 升级版恋爱脑测试，加入更多情侣专属问题 | 4'
     ], schedule: ['互换衣橱挑战','日常随拍','恋爱脑测试','互动回复','情侣默契考验','周末Vlog','粉丝互动'], lastUpdate: '' },
     douyin: { boomVideos: [
-      '情侣互换穿搭出门 | 小羊和她的猫 | 穿搭变装 | 85万 | 情侣互换穿搭出门 抖音 | 爆点：反差感+真实互动+路人反应+穿搭对比强烈',
-      '和女友的甜蜜日常vlog | 两颗糖 | 甜蜜日常 | 120万 | 和女友的甜蜜日常vlog 抖音 | 爆点：真实生活感+温柔BGM+眼神互动+日常小细节',
-      '情侣默契问答挑战 | 糖糖和果果 | 互动挑战 | 67万 | 情侣默契问答挑战 抖音 | 爆点：问答悬念+搞笑惩罚+CP感+评论区互动高',
-      '奶油风情侣写真花絮 | 橘子汽水 | 甜蜜日常 | 93万 | 奶油风情侣写真花絮 抖音 | 爆点：高颜值+氛围感+拍摄教程+成片对比',
-      '八月好运情侣版 | 多位达人 | 情感语录 | 150万 | 八月好运情侣版 抖音 | 爆点：蹭热点+许愿文案+甜蜜约定+季节氛围',
+      '情侣互换穿搭出门 | 小羊和她的猫 | 穿搭变装 | 85万 | 情侣互换穿搭出门 抖音 | 爆点：反差感+真实互动+路人反应+穿搭对比强烈，评论区投票互动率极高',
+      '和女友的甜蜜日常vlog | 两颗糖 | 甜蜜日常 | 120万 | 和女友的甜蜜日常vlog 抖音 | 爆点：真实生活感+温柔BGM+眼神互动+日常小细节，观众代入感强',
+      '八月好运情侣版 | 多位达人 | 情感语录 | 150万 | 八月好运情侣版 抖音 | 爆点：蹭八月热点+许愿文案+甜蜜约定，季节氛围感拉满',
+      '情侣默契问答挑战 | 糖糖和果果 | 互动挑战 | 67万 | 情侣默契问答挑战 抖音 | 爆点：问答悬念+搞笑惩罚+CP感，评论区互动率极高',
+      '奶油风情侣写真花絮 | 橘子汽水 | 甜蜜日常 | 93万 | 奶油风情侣写真花絮 抖音 | 爆点：高颜值+氛围感+拍摄教程+成片对比，收藏率高',
       '丝滑入场舞情侣合拍 | 桃子和栗子 | 音乐舞蹈 | 78万 | 丝滑入场舞情侣合拍 抖音 | 爆点：舞蹈挑战+BGM卡点+CP默契+丝滑转场',
-      '女友给我搭配衣服vs我自己 | 麦子和面包 | 穿搭变装 | 55万 | 女友给我搭配衣服vs我自己 抖音 | 爆点：反差效果+投票互动+搞笑元素+审美差异',
-      '情侣暑期旅行vlog | 深海与星光 | 旅行vlog | 110万 | 情侣暑期旅行vlog 抖音 | 爆点：旅行攻略+美景+情侣互动+热门目的地'
+      '火把节情侣随拍 | 多位达人 | 旅行vlog | 110万 | 火把节情侣随拍 抖音 | 爆点：蹭火把节热点+夜晚氛围+情侣互动，应季流量大',
+      '女友给我搭配衣服vs我自己 | 麦子和面包 | 穿搭变装 | 55万 | 女友改造穿搭 抖音 | 爆点：反差效果+投票互动+搞笑元素，二创空间大'
     ], remixIdeas: [
-      '情侣互换穿搭出门 | 模仿爆款框架，换成你们自己的衣柜，加入出门后路人真实反应 | 5',
-      '默契问答挑战情侣版 | 设计5-8个专属问题，加入答错后的搞笑惩罚，结尾甜蜜反转 | 5',
-      '奶油风写真花絮翻拍 | 找同款拍摄地/风格，加入拍摄过程NG花絮，成片做对比卡点 | 4',
-      '八月好运许愿版 | 结合当下热点话题，和女友一起许愿，加入甜蜜约定环节 | 5',
-      '丝滑转场舞合拍 | 选同款BGM，加入你们的专属动作，结尾加笑场NG做反差 | 4',
-      '一日情侣vlog | 从早到晚跟拍，记录真实互动，温柔BGM+生活感剪辑 | 4',
-      '女友改造我穿搭 | 让女友给你搭配一套，你自己搭配一套，发投票让粉丝选 | 4'
-    ], publishAdvice: '最佳发布时间：18:00-20:00（晚间流量高峰）\n标题建议：八月第一天，我和女友一起接好运...\n标签：#情侣日常 #女同 #恋爱日常 #八月好运 #le\n预估互动：5-10万赞 / 3000+评论', lastUpdate: '2026-08-01 10:15' },
+      '情侣互换穿搭出门 | 模仿框架用你们自己的衣柜，加入出门后路人真实反应+互相评价 | 5',
+      '默契问答挑战情侣版 | 设计5-8个专属问题，加入答错搞笑惩罚，结尾甜蜜反转 | 5',
+      '八月好运许愿情侣版 | 结合八月热点，和女友一起许愿+甜蜜约定+回忆杀混剪 | 5',
+      '奶油风写真花絮翻拍 | 找同款风格拍摄地，加入拍摄NG花絮+成片卡点对比 | 4',
+      '丝滑转场舞合拍 | 选同款BGM加入专属动作，结尾加笑场NG做反差萌 | 4',
+      '火把节夜晚情侣vlog | 记录夜晚浪漫氛围+火花特效+温柔BGM | 4',
+      '一日情侣vlog | 从早到晚跟拍真实互动，温柔BGM+生活感剪辑 | 4'
+    ], publishAdvice: '最佳发布时间：18:00-20:00（晚间流量高峰）\n今日热点：八一建军节+八月好运+火把节\n标题建议：八月第一天，我和女友一起接好运…\n标签：#情侣日常 #女同 #恋爱日常 #八月好运 #le\n预估互动：5-10万赞 / 3000+评论', lastUpdate: '2026-08-01 17:00' },
     account: { income: 0, expenses: { food: 0, traffic: 0, shop: 0, ent: 0, gym: 0, other: 0 }, monthly: {}, budget: 3000, saveGoal: 5000 },
-    english: { dialogue: '', expressions: [], vocab: [], listening: '', checked: false, history: {} },
+    english: { dialogue: '🗣️ 餐厅点餐场景\n\n👩 Waitress: Good evening! Do you have a reservation?\n晚上好！您有预订吗？\n\n👩‍🦰 You: No, we don\'t. Can we get a table for two?\n没有，我们能要一个两人桌吗？\n\n👩 Waitress: Of course! Follow me. Here\'s the menu. Can I get you started with some drinks?\n当然！跟我来。这是菜单。先来点喝的吗？\n\n实用短语：get a table for two 要一个两人桌 / get you started with 先来点…\n\n👩‍🦰 You: I\'ll have an iced latte and she\'ll have a sparkling water, please.\n我要一杯冰拿铁，她要一杯气泡水。\n\n👩 Waitress: Got it! Are you ready to order or do you need a few more minutes?\n好的！可以点餐了吗还是需要再看几分钟？\n\n实用短语：I\'ll have… 我要… / Are you ready to order? 可以点餐了吗？', expressions: [
+      'I\'ll go with the salmon, please. | 我选三文鱼吧。 | 点餐时表达选择，比 "I want" 更礼貌',
+      'Could we get the check, please? | 麻烦买单。 | 结账时用，check=账单（美式）',
+      'That was absolutely delicious! | 太好吃了！ | 用餐后表达满意，absolutely加强语气'
+    ], vocab: [
+      'reservation | /ˌrezərˈveɪʃn/ | 预订 | I\'d like to make a reservation for tonight.',
+      'appetizer | /ˈæpɪtaɪzər/ | 开胃菜 | We ordered two appetizers to share.',
+      'medium-rare | /ˈmiːdiəm rer/ | 五分熟 | I\'d like my steak medium-rare, please.',
+      'split the bill | /splɪt ðə bɪl/ | AA制 | Let\'s split the bill this time.',
+      'leftovers | /ˈleftoʊvərz/ | 剩菜/打包 | Could you wrap up the leftovers for us?'
+    ], listening: '推荐：TED Talk - "The Secret to Better Conversations" | 来源：TED.com | 训练步骤：① 盲听2遍抓大意 → ② 开英文字幕核对 → ③ 逐句跟读模仿语调 → ④ 手机录音对比原音', checked: false, history: {} },
     todo: { items: [] },
     checkin: { count: 0, total: 24 }
   };
