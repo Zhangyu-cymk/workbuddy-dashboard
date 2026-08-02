@@ -952,17 +952,17 @@ function getDefaultData() {
   return {
     diet: { meals: { breakfast: false, lunch: false, dinner: false, supplement: false }, plan: { protein: 120, carb: 200, fat: 50, kcal: 2000 }, actual: { protein: 0, carb: 0, fat: 0, kcal: 0 }, history: {}, weight: { today: 65.0, target: 58.0, history: {} }, currentPlan: 'maintain', foodLog: { breakfast: [], lunch: [], dinner: [], snack: [] } },
     news: { items: [
-      '亚马逊Q2财报营收2006亿美元同比增20%，净利润626亿美元暴增243% → AI算力/AWS云计算产业链',
-      '美股三大指数集体收涨，纳指涨0.99%，亚马逊单日涨15%创2012年最大涨幅，苹果跌7% → 科技股/AI板块',
-      '布伦特原油突破91美元/桶，日内涨4.78%，美伊局势升级 → 石油石化/军工/航运',
-      '铁矿石期货跌破700元/吨关口，创去年6月以来新低，跌近3% → 钢铁/基建/房地产',
-      '纳斯达克中国金龙指数涨1.47%，金山云涨10.21%，中概股7月累涨12.84% → 中概股/港股科技',
-      '第十二批国家药品集采开标，65种药品采购成功，覆盖4.5万家医疗机构 → 医药/仿制药/创新药',
-      '美联储主席沃什考虑减少政策会议频率，方案或在9月前敲定 → 金融/银行/利率敏感板块',
-      'A股已有83家公司披露中报，合计净利润864.92亿同比增57% → 中报业绩/预增板块',
-      '国有六大行公示个人贷款综合融资成本上限，8月1日起执行 → 银行/消费金融',
-      'OpenAI调查发现其他AI智能体脱离管控的证据 → AI安全/人工智能板块'
-    ], advice: '关注AI算力+中概股反弹主线；地缘风险升温利好石油军工；中报密集披露期关注业绩超预期个股', lastUpdate: '2026-08-01 17:00' },
+      '央行下半年工作会议定调：继续实施适度宽松货币政策，稳定资本市场信心 → 银行/券商/金融',
+      '国常会核准4个核电项目共8台机组，总投资超1700亿元，系2026年首次核电核准 → 核电/核电设备/核级材料',
+      '政治局定调"六张网"建设提速，新型电网"十五五"拟投资超5万亿 → 特高压/智能电网/储能',
+      '上周五A股绝地反击，创业板指大涨3.06%，全市场成交放量至2.56万亿 → 创业板/成长股',
+      '美股三大指数收涨，亚马逊大涨15%创2012年来最大涨幅，AI算力情绪修复 → AI/半导体/科技',
+      '现货黄金回落1.52%至4043美元/盎司，美元指数跌至99.78 → 黄金/有色金属',
+      '7月A股沪指月跌6.40%，创业板月跌23%，短期反弹中注意结构性分化 → 大盘/创业板',
+      'AI应用板块爆发但炸板率高，CPO/存储芯片/PCB高开低走，8月3日或强分化 → AI算力/CPO/半导体',
+      '今日14只个股解禁，岱勒新材解禁7532万股占总股本18.97% → 解禁个股注意抛压',
+      '中国7月制造业PMI数据今日公布，若低于荣枯线可能压制市场情绪 → 制造业/宏观经济'
+    ], advice: '关注核电+新型电网政策主线；AI算力情绪修复但注意分化；中报业绩线优选增长确定的个股', lastUpdate: '2026-08-03 08:00' },
     idea: { ideas: [
       '互换衣橱挑战 | 互动挑战 | 和女友互换全套穿搭出门，记录路人反应和互相评价 | 5',
       '七月回忆杀+八月约定 | 随拍 | 用七月素材做混剪，结尾许愿八月，温馨感人 | 5',
@@ -974,35 +974,35 @@ function getDefaultData() {
       '恋爱脑测试2.0 | 互动 | 升级版恋爱脑测试，加入更多情侣专属问题 | 4'
     ], schedule: ['互换衣橱挑战','日常随拍','恋爱脑测试','互动回复','情侣默契考验','周末Vlog','粉丝互动'], lastUpdate: '' },
     douyin: { boomVideos: [
-      '情侣互换穿搭出门 | 小羊和她的猫 | 穿搭变装 | 85万 | 情侣互换穿搭出门 抖音 | 爆点：反差感+真实互动+路人反应+穿搭对比强烈，评论区投票互动率极高',
-      '和女友的甜蜜日常vlog | 两颗糖 | 甜蜜日常 | 120万 | 和女友的甜蜜日常vlog 抖音 | 爆点：真实生活感+温柔BGM+眼神互动+日常小细节，观众代入感强',
-      '八月好运情侣版 | 多位达人 | 情感语录 | 150万 | 八月好运情侣版 抖音 | 爆点：蹭八月热点+许愿文案+甜蜜约定，季节氛围感拉满',
-      '情侣默契问答挑战 | 糖糖和果果 | 互动挑战 | 67万 | 情侣默契问答挑战 抖音 | 爆点：问答悬念+搞笑惩罚+CP感，评论区互动率极高',
-      '奶油风情侣写真花絮 | 橘子汽水 | 甜蜜日常 | 93万 | 奶油风情侣写真花絮 抖音 | 爆点：高颜值+氛围感+拍摄教程+成片对比，收藏率高',
-      '丝滑入场舞情侣合拍 | 桃子和栗子 | 音乐舞蹈 | 78万 | 丝滑入场舞情侣合拍 抖音 | 爆点：舞蹈挑战+BGM卡点+CP默契+丝滑转场',
-      '火把节情侣随拍 | 多位达人 | 旅行vlog | 110万 | 火把节情侣随拍 抖音 | 爆点：蹭火把节热点+夜晚氛围+情侣互动，应季流量大',
-      '女友给我搭配衣服vs我自己 | 麦子和面包 | 穿搭变装 | 55万 | 女友改造穿搭 抖音 | 爆点：反差效果+投票互动+搞笑元素，二创空间大'
+      '天才女友开播爆火 | 多位达人 | 情感语录 | 320万 | 天才女友开播 抖音 | 爆点：女性智性恋+权威人设+高颜值CP+台词金句，女性向内容引爆评论区',
+      '全国烤肉师傅申请出战 | 多位达人 | 互动挑战 | 280万 | 全国烤肉师傅申请出战 抖音 | 爆点：地域PK+技能展示+搞笑元素+全民参与感',
+      '全抖音都在模仿痴迷名场面 | 多位达人 | 互动挑战 | 190万 | 全抖音模仿痴迷名场面 抖音 | 爆点：经典翻拍+二创空间大+CP感+模仿门槛低',
+      '这届AI进化到开始玩心眼了 | 多位达人 | 情感语录 | 250万 | AI进化玩心眼 抖音 | 爆点：AI话题+搞笑反转+评论区互动+蹭科技热点',
+      '释小龙时隔30年再次探班周星驰 | 释小龙 | 甜蜜日常 | 410万 | 释小龙探班周星驰 抖音 | 爆点：情怀杀+童年回忆+明星互动+反差惊喜',
+      '嗑上天才女友这对权威智性恋 | 多位达人 | 情感语录 | 180万 | 天才女友智性恋 抖音 | 爆点：女性向CP+智性恋标签+台词剪辑+高互动率',
+      '用一万斤青铜复刻曾侯乙编钟 | 多位达人 | 旅行vlog | 220万 | 青铜复刻曾侯乙编钟 抖音 | 爆点：非遗文化+匠心展示+震撼视觉效果+知识科普',
+      '老狼老狼几点了谁还记得 | 多位达人 | 情感语录 | 160万 | 老狼老狼几点了 抖音 | 爆点：童年回忆杀+怀旧BGM+评论区共鸣+情感共振'
     ], remixIdeas: [
-      '情侣互换穿搭出门 | 模仿框架用你们自己的衣柜，加入出门后路人真实反应+互相评价 | 5',
-      '默契问答挑战情侣版 | 设计5-8个专属问题，加入答错搞笑惩罚，结尾甜蜜反转 | 5',
-      '八月好运许愿情侣版 | 结合八月热点，和女友一起许愿+甜蜜约定+回忆杀混剪 | 5',
-      '奶油风写真花絮翻拍 | 找同款风格拍摄地，加入拍摄NG花絮+成片卡点对比 | 4',
-      '丝滑转场舞合拍 | 选同款BGM加入专属动作，结尾加笑场NG做反差萌 | 4',
-      '火把节夜晚情侣vlog | 记录夜晚浪漫氛围+火花特效+温柔BGM | 4',
-      '一日情侣vlog | 从早到晚跟拍真实互动，温柔BGM+生活感剪辑 | 4'
-    ], publishAdvice: '最佳发布时间：18:00-20:00（晚间流量高峰）\n今日热点：八一建军节+八月好运+火把节\n标题建议：八月第一天，我和女友一起接好运…\n标签：#情侣日常 #女同 #恋爱日常 #八月好运 #le\n预估互动：5-10万赞 / 3000+评论', lastUpdate: '2026-08-01 17:00' },
+      '天才女友情侣版 | 模仿剧中智性恋CP互动，加入你们的日常版本+台词改编 | 5',
+      '烤肉师傅情侣挑战版 | 和女友PK烤肉技术，加入搞笑点评+路人投票 | 4',
+      '模仿痴迷名场面情侣版 | 翻拍经典镜头换成情侣日常版，加入笑场NG | 5',
+      'AI玩心眼情侣版 | 用AI生成你们的对话对比+搞笑解读+真实反应 | 4',
+      '童年回忆杀情侣版 | 玩老狼老狼几点了+回忆各自童年+甜蜜约定 | 4',
+      '非遗复刻情侣版 | 一起做手工/料理复刻经典，记录过程+成片对比 | 3',
+      '智性恋CP日常 | 模仿天才女友风格拍日常互动+知识问答+甜蜜反转 | 5'
+    ], publishAdvice: '今日热点：天才女友+AI话题+烤肉挑战+童年回忆杀\n最佳发布时间：18:00-20:00\n标题建议：天才女友同款智性恋日常，我和女友的版本…\n标签：#情侣日常 #女同 #天才女友 #智性恋 #le\n预估互动：5-10万赞 / 3000+评论', lastUpdate: '2026-08-03 08:00' },
     account: { income: 0, expenses: { food: 0, traffic: 0, shop: 0, ent: 0, gym: 0, other: 0 }, monthly: {}, budget: 3000, saveGoal: 5000 },
-    english: { dialogue: '🗣️ 餐厅点餐场景\n\n👩 Waitress: Good evening! Do you have a reservation?\n晚上好！您有预订吗？\n\n👩‍🦰 You: No, we don\'t. Can we get a table for two?\n没有，我们能要一个两人桌吗？\n\n👩 Waitress: Of course! Follow me. Here\'s the menu. Can I get you started with some drinks?\n当然！跟我来。这是菜单。先来点喝的吗？\n\n实用短语：get a table for two 要一个两人桌 / get you started with 先来点…\n\n👩‍🦰 You: I\'ll have an iced latte and she\'ll have a sparkling water, please.\n我要一杯冰拿铁，她要一杯气泡水。\n\n👩 Waitress: Got it! Are you ready to order or do you need a few more minutes?\n好的！可以点餐了吗还是需要再看几分钟？\n\n实用短语：I\'ll have… 我要… / Are you ready to order? 可以点餐了吗？', expressions: [
-      'I\'ll go with the salmon, please. | 我选三文鱼吧。 | 点餐时表达选择，比 "I want" 更礼貌',
-      'Could we get the check, please? | 麻烦买单。 | 结账时用，check=账单（美式）',
-      'That was absolutely delicious! | 太好吃了！ | 用餐后表达满意，absolutely加强语气'
+    english: { dialogue: '🗣️ 职场会议场景\n\n👨 Boss: Let\'s get started. First item on the agenda — the Q3 marketing plan. Any thoughts?\n我们开始吧。议程第一项——Q3营销计划。大家有什么想法？\n\n👩‍💼 You: I think we should focus more on social media this quarter. The engagement rate has been dropping.\n我认为这季度应该更关注社交媒体。互动率一直在下降。\n\n实用短语：get started 开始 / first item on the agenda 议程第一项 / focus more on 更关注\n\n👨 Boss: Good point. Can you put together a proposal by Friday?\n说得好。你能在周五前出个方案吗？\n\n👩‍💼 You: Sure, I\'ll have a draft ready by Wednesday and circulate it for feedback.\n没问题，我周三前出初稿，然后发给大家征求意见。\n\n实用短语：put together 出一个 / circulate for feedback 发给…征求意见\n\n👨 Boss: Perfect. Let\'s table the next item and come back to it after lunch.\n好的。下一项先放一放，午饭后再讨论。\n\n实用短语：table 先放一放 / come back to 再讨论', expressions: [
+      'Let\'s circle back to that later. | 我们稍后再回到这个话题。 | 会议中暂时搁置某话题',
+      'I\'m on the same page with you. | 我和你的想法一致。 | 表示赞同对方观点，比"agree"更地道',
+      'Can you walk us through the plan? | 能给我们讲讲这个方案吗？ | 请人详细介绍，walk through=逐步讲解'
     ], vocab: [
-      'reservation | /ˌrezərˈveɪʃn/ | 预订 | I\'d like to make a reservation for tonight.',
-      'appetizer | /ˈæpɪtaɪzər/ | 开胃菜 | We ordered two appetizers to share.',
-      'medium-rare | /ˈmiːdiəm rer/ | 五分熟 | I\'d like my steak medium-rare, please.',
-      'split the bill | /splɪt ðə bɪl/ | AA制 | Let\'s split the bill this time.',
-      'leftovers | /ˈleftoʊvərz/ | 剩菜/打包 | Could you wrap up the leftovers for us?'
-    ], listening: '推荐：TED Talk - "The Secret to Better Conversations" | 来源：TED.com | 训练步骤：① 盲听2遍抓大意 → ② 开英文字幕核对 → ③ 逐句跟读模仿语调 → ④ 手机录音对比原音', checked: false, history: {} },
+      'agenda | /əˈdʒendə/ | 议程 | Let\'s stick to the agenda.',
+      'engagement | /ɪnˈɡeɪdʒmənt/ | 互动/参与度 | Social media engagement is key.',
+      'proposal | /prəˈpoʊzl/ | 方案/提案 | I\'ll send you the proposal tomorrow.',
+      'circulate | /ˈsɜːrkjəleɪt/ | 传阅/分发 | Please circulate this to the team.',
+      'brainstorm | /ˈbreɪnstɔːrm/ | 头脑风暴 | Let\'s brainstorm some ideas together.'
+    ], listening: '推荐：TED Talk - "How to Speak So That People Want to Listen" | 来源：TED.com | 训练步骤：① 盲听2遍抓大意 → ② 开英文字幕核对 → ③ 逐句跟读模仿语调 → ④ 手机录音对比原音', checked: false, history: {} },
     todo: { items: [] },
     checkin: { count: 0, total: 24 }
   };
@@ -1012,6 +1012,22 @@ function saveData(data) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 
+// 内容版本号——定时任务更新 news/english/douyin/idea 时改这个值
+// 页面加载时如果版本号变了，自动用最新默认数据覆盖内容模块
+const CONTENT_VERSION = '2026-08-03-v2';
+
+function syncContentData(data) {
+  if (!data._contentVer || data._contentVer !== CONTENT_VERSION) {
+    const def = getDefaultData();
+    data.news = def.news;
+    data.english = def.english;
+    data.douyin = def.douyin;
+    data.idea = def.idea;
+    data._contentVer = CONTENT_VERSION;
+  }
+  return data;
+}
+
 function checkNewDay(data) {
   const today = getTodayStr();
   if (!data._lastDay || data._lastDay !== today) {
@@ -1019,9 +1035,8 @@ function checkNewDay(data) {
     data.diet.meals = { breakfast: false, lunch: false, dinner: false, supplement: false };
     data.diet.actual = { protein: 0, carb: 0, fat: 0, kcal: 0 };
     data.diet.foodLog = { breakfast: [], lunch: [], dinner: [], snack: [] };
-    // 不清空 news/idea/douyin/english — 这些由定时任务每天更新
-    data.account.income = 0;
-    data.account.expenses = { food: 0, traffic: 0, shop: 0, ent: 0, gym: 0, other: 0 };
+    // 不清空 news/idea/douyin/english — 由 syncContentData 通过版本号更新
+    // 不清空 account — 保留用户收支记录
     data.todo.items = data.todo.items.filter(t => !t.daily).map(t => ({ ...t, done: false }));
     data.checkin.count = 0;
     data._lastDay = today;
@@ -1030,6 +1045,7 @@ function checkNewDay(data) {
 }
 
 let appData = loadData();
+appData = syncContentData(appData);
 appData = checkNewDay(appData);
 saveData(appData);
 
