@@ -498,6 +498,96 @@
   .vocab-mean { font-size: 12px; color: var(--text-light); margin-top: 2px; }
   .vocab-ex { font-size: 11px; color: #BDBDBD; font-style: italic; margin-top: 2px; }
 
+  /* 单词大卡 — 小红书风格 */
+  .vocab-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 10px; margin-top: 10px;
+  }
+  .word-card {
+    background: linear-gradient(180deg, #F1F8E9 0%, #FFFFFF 60%);
+    border-radius: 18px; padding: 14px 12px;
+    border: 1px solid #E8F5E9; cursor: pointer;
+    transition: all 0.2s; position: relative;
+    box-shadow: 0 2px 8px rgba(124,179,66,0.06);
+  }
+  .word-card:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(124,179,66,0.12); }
+  .word-card-top { display: flex; justify-content: flex-end; margin-bottom: 4px; }
+  .word-card-icons { display: flex; gap: 6px; }
+  .word-icon-btn {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: #FFFFFF; display: flex; align-items: center; justify-content: center;
+    font-size: 12px; border: 1.5px solid #C5E1A5;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .word-icon-btn:active { transform: scale(0.9); }
+  .word-star.active { background: #FFFDE7; border-color: #F9A825; }
+  .word-card-main { padding: 8px 0; }
+  .word-text {
+    font-size: 22px; font-weight: 800; color: #2E7D32;
+    line-height: 1.2; word-break: break-word;
+  }
+  .word-phon {
+    font-size: 11px; color: #90A4AE; margin-top: 4px;
+    font-style: italic; font-family: serif;
+  }
+  .word-card-tip {
+    font-size: 11px; color: #7CB342; text-align: center;
+    margin-top: 8px; font-weight: 500;
+  }
+  .word-card-detail {
+    margin-top: 10px; padding-top: 10px;
+    border-top: 1px dashed #C5E1A5;
+  }
+  .word-mean { font-size: 13px; color: #2E7D32; font-weight: 600; }
+  .word-ex { font-size: 11px; color: #546E7A; margin-top: 4px; font-style: italic; }
+
+  /* 英语学习统计卡 */
+  .en-stats-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 10px; margin: 10px 0;
+  }
+  .en-stat-box {
+    background: linear-gradient(135deg, #FFFFFF 0%, #F1F8E9 100%);
+    border-radius: 18px; padding: 18px 14px; text-align: center;
+    border: 1px solid #E8F5E9;
+  }
+  .en-stat-num { font-size: 32px; font-weight: 800; color: #2E7D32; line-height: 1.1; }
+  .en-stat-lbl { font-size: 11px; color: var(--text-light); margin-top: 6px; }
+
+  /* 英语进度卡 */
+  .en-progress-card {
+    background: #FFFFFF; border-radius: 18px; padding: 16px;
+    border: 1px solid #E8F5E9; margin-top: 10px;
+    box-shadow: 0 2px 8px rgba(124,179,66,0.06);
+  }
+  .en-progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .en-progress-title { font-size: 14px; font-weight: 700; }
+  .en-progress-pct { font-size: 13px; color: #7CB342; font-weight: 600; }
+  .en-progress-bar { height: 8px; background: #F1F8E9; border-radius: 4px; overflow: hidden; }
+  .en-progress-fill { height: 100%; background: linear-gradient(90deg, #A3C910, #7CB342); border-radius: 4px; transition: width 0.4s; }
+  .en-progress-info { font-size: 11px; color: var(--text-light); margin-top: 6px; }
+
+  /* 新闻分类 Tab */
+  .news-tabs {
+    display: flex; gap: 8px; margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .news-tab {
+    padding: 7px 16px; border-radius: 18px;
+    background: #FFFFFF; color: var(--text-light);
+    border: 1.5px solid #E8ECED; font-size: 13px;
+    cursor: pointer; font-weight: 500;
+    transition: all 0.15s;
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .news-tab:hover { border-color: var(--buzz-green); }
+  .news-tab.active {
+    background: linear-gradient(135deg, #A3C910, #7CB342);
+    color: #FFFFFF; border-color: var(--buzz-green-dark);
+    font-weight: 600; box-shadow: 0 2px 8px rgba(163,201,16,0.25);
+  }
+  .news-tab .tab-emoji { font-size: 14px; }
+
   /* 对话 */
   .dialogue-box {
     background: #F8FAF5; border-radius: 12px; padding: 10px 12px;
@@ -1048,12 +1138,12 @@ function getDefaultData() {
       'I\'m on the same page with you. | 我和你的想法一致。 | 表示赞同对方观点，比"agree"更地道',
       'Can you walk us through the plan? | 能给我们讲讲这个方案吗？ | 请人详细介绍，walk through=逐步讲解'
     ], vocab: [
+      'assume | /əˈsjuːm/ | 假定 | I assume you have the data ready.',
+      'atmosphere | /ˈætməsfɪə/ | 氛围 | The atmosphere in the office is relaxed.',
       'agenda | /əˈdʒendə/ | 议程 | Let\'s stick to the agenda.',
       'engagement | /ɪnˈɡeɪdʒmənt/ | 互动/参与度 | Social media engagement is key.',
-      'proposal | /prəˈpoʊzl/ | 方案/提案 | I\'ll send you the proposal tomorrow.',
-      'circulate | /ˈsɜːrkjəleɪt/ | 传阅/分发 | Please circulate this to the team.',
-      'brainstorm | /ˈbreɪnstɔːrm/ | 头脑风暴 | Let\'s brainstorm some ideas together.'
-    ], listening: '推荐：TED Talk - "How to Speak So That People Want to Listen" | 来源：TED.com | 训练步骤：① 盲听2遍抓大意 → ② 开英文字幕核对 → ③ 逐句跟读模仿语调 → ④ 手机录音对比原音', checked: false, history: {} },
+      'proposal | /prəˈpoʊzl/ | 方案/提案 | I\'ll send you the proposal tomorrow.'
+    ], listening: '推荐：TED Talk - "How to Speak So That People Want to Listen" | 来源：TED.com | 训练步骤：① 盲听2遍抓大意 → ② 开英文字幕核对 → ③ 逐句跟读模仿语调 → ④ 手机录音对比原音', checked: false, history: { total: 0 }, favs: {} },
     todo: { items: [] },
     checkin: { count: 0, total: 24 }
   };
@@ -1065,7 +1155,7 @@ function saveData(data) {
 
 // 内容版本号——定时任务更新 news/english/douyin/idea 时改这个值
 // 页面加载时如果版本号变了，自动用最新默认数据覆盖内容模块
-const CONTENT_VERSION = '2026-08-03-v4';
+const CONTENT_VERSION = '2026-08-03-v5';
 
 function syncContentData(data) {
   if (!data._contentVer || data._contentVer !== CONTENT_VERSION) {
@@ -1080,6 +1170,11 @@ function syncContentData(data) {
   if (data.account && !data.account.dailyLog) {
     data.account.dailyLog = {};
     // 如果有旧的 monthly 数据，尝试迁移到 dailyLog（无法精确还原，跳过）
+  }
+  // 数据结构迁移：确保 english.history 和 english.favs 存在
+  if (data.english) {
+    if (!data.english.history) data.english.history = { total: 0 };
+    if (!data.english.favs) data.english.favs = {};
   }
   return data;
 }
@@ -2010,40 +2105,73 @@ function bindDietEvents() {
 }
 
 // ==================== 面板2: 每日新闻 ====================
+function classifyNews(item) {
+  // 基于影响板块关键字自动分类
+  const sector = (item.split('→')[1] || '').toLowerCase();
+  const title = item.split('→')[0] || '';
+  if (/(银行|券商|金融|股市|a股|创业板|沪指|美股|半导体|ai|芯片|cpo|存储|pcb|核电|电网|储能|新能源|特高压|有色|黄金|金融|经济|时政|国务院|央行|政治局|政策|银行|利率|存款|央行|油|油价|外卖|快递|教育部|医保|电信|联通|学校|教育)/i.test(sector + title)) {
+    if (/(油|外卖|快递|教育部|电信|学校|教育|医保|时政|国务院|央行|政治局|政策|银行|利率|存款)/i.test(sector + title)) return '时政';
+    if (/(a股|股市|创业板|沪指|美股|半导体|ai|芯片|cpo|存储|pcb|核电|电网|储能|新能源|特高压|有色|黄金|银行|券商|金融)/i.test(sector + title)) return '财经';
+    if (/(消费|购物|餐饮|娱乐|电商|零售|品牌|店铺|服装|美妆|食品)/i.test(sector + title)) return '消费';
+  }
+  if (/(消费|购物|餐饮|娱乐|电商|零售|品牌|店铺)/i.test(sector + title)) return '消费';
+  if (/(国务院|央行|政治局|政策|油|油价|外卖|快递|教育部|电信|学校|教育|医保|银行|利率|存款|时政)/i.test(sector + title)) return '时政';
+  return '其他';
+}
+
 function renderNewsPanel() {
   const items = appData.news.items;
+  const currentCat = appData.news.currentCat || '全部';
+  const cats = ['全部', '时政', '财经', '消费'];
+  const filtered = currentCat === '全部' ? items : items.filter(it => classifyNews(it) === currentCat);
+  const updateTime = appData.news.lastUpdate || '';
+
   return `
 <div class="module-panel" id="panel-news">
   <div class="card">
     <div class="card-header">
       <div class="card-title-row">
         <div class="card-icon ic-news">📰</div>
-        <div><div class="card-title">每日新闻</div><div class="card-subtitle">财经要闻 · 政策解读 · 市场分析</div></div>
+        <div><div class="card-title">行业新闻</div><div class="card-subtitle">时政 · 财经 · 消费 每日更新</div></div>
       </div>
-      ${appData.news.lastUpdate ? '<span style="font-size:10px;color:#999;">更新于 '+appData.news.lastUpdate+'</span>' : ''}
     </div>
+
+    <div class="news-tabs">
+      ${cats.map(c => {
+        const emoji = c === '全部' ? '📋' : c === '时政' ? '🏛️' : c === '财经' ? '📈' : '🛍️';
+        return `<div class="news-tab${currentCat===c?' active':''}" data-cat="${c}"><span class="tab-emoji">${emoji}</span>${c}</div>`;
+      }).join('')}
+      <div class="news-tab${currentCat==='订阅'?' active':''}" data-cat="订阅"><span class="tab-emoji">⭐</span>订阅</div>
+    </div>
+
+    ${updateTime ? `<div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--text-light);margin-bottom:10px;padding:0 4px;">
+      <span>📅 更新于 ${updateTime}</span>
+      <span style="color:#7CB342;font-weight:600;">共 ${filtered.length} 条</span>
+    </div>` : ''}
 
     <div style="margin-bottom:10px;">
       <textarea id="news-input" placeholder="粘贴或输入今日重要新闻，每条一行&#10;格式：标题 → 影响板块/个股" style="width:100%;min-height:80px;">${items.join('\n')}</textarea>
       <button class="btn btn-primary btn-full" id="news-save">保存新闻</button>
     </div>
 
-    ${items.length > 0 ? items.map((item, i) => {
+    ${filtered.length > 0 ? filtered.map(item => {
+      const idx = items.indexOf(item);
       const parts = item.split('→');
+      const cat = classifyNews(item);
       return `
       <div class="hot-row">
-        <div class="hot-rank hr-${i<3?i+1:'n'}">${i+1}</div>
+        <div class="hot-rank hr-${idx<3?idx+1:'n'}">${idx+1}</div>
         <div>
           <div class="hot-txt">${parts[0] || item}</div>
-          ${parts[1] ? `<div class="hot-meta">影响：${parts[1]}</div>` : ''}
+          ${parts[1] ? `<div class="hot-meta">影响：${parts[1]}<span class="badge b-green" style="margin-left:6px;">${cat}</span></div>` : ''}
         </div>
       </div>`;
-    }).join('') : '<div style="text-align:center;color:#999;padding:20px;">暂无新闻，请手动添加</div>'}
+    }).join('') : '<div style="text-align:center;color:#999;padding:20px;">该分类暂无新闻</div>'}
 
     ${items.length > 0 ? `
     <div class="tip-box" style="margin-top:12px;">
       <div class="tip-title">📊 今日摘要</div>
-      <div class="tip-row">共 ${items.length} 条重要新闻，涉及 ${[...new Set(items.filter(i=>i.includes('→')).map(i=>i.split('→')[1].trim()))].join('、') || '多'} 个方向</div>
+      <div class="tip-row">共 ${items.length} 条新闻 · 时政 ${items.filter(i=>classifyNews(i)==='时政').length} · 财经 ${items.filter(i=>classifyNews(i)==='财经').length} · 消费 ${items.filter(i=>classifyNews(i)==='消费').length}</div>
     </div>` : ''}
   </div>
 </div>`;
@@ -2053,11 +2181,19 @@ function bindNewsEvents() {
   $('#news-save')?.addEventListener('click', () => {
     const text = $('#news-input')?.value || '';
     appData.news.items = text.split('\n').filter(l => l.trim());
-    appData.news.lastUpdate = new Date().toLocaleTimeString('zh-CN', {hour:'2-digit',minute:'2-digit'});
+    appData.news.lastUpdate = new Date().toLocaleString('zh-CN', {month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});
     saveData(appData);
     renderAll();
     switchPanel('news');
     toast('新闻已保存 ✅');
+  });
+
+  $$('.news-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      appData.news.currentCat = tab.dataset.cat;
+      renderAll();
+      switchPanel('news');
+    });
   });
 }
 
@@ -2561,6 +2697,12 @@ function bindAccountEvents() {
 // ==================== 面板6: 英语学习 ====================
 function renderEnglishPanel() {
   const en = appData.english;
+  const todayCount = en.vocab.length;
+  const totalDays = Object.keys(en.history || {}).length || 1;
+  const totalWords = (en.history && en.history.total) || todayCount;
+  const learnedToday = en.checked ? todayCount : 0;
+  const progressPct = todayCount > 0 ? Math.round((learnedToday / todayCount) * 100) : 0;
+
   return `
 <div class="module-panel" id="panel-english">
   <div class="card">
@@ -2572,11 +2714,31 @@ function renderEnglishPanel() {
       <div class="btn-check${en.checked?' done':''}" data-key="english.checked">✓</div>
     </div>
 
-    <div style="font-size:14px;font-weight:600;margin-bottom:8px;">🗣️ 今日口语对话</div>
+    <div class="en-stats-row">
+      <div class="en-stat-box">
+        <div class="en-stat-num">${totalDays}</div>
+        <div class="en-stat-lbl">累计学习天数</div>
+      </div>
+      <div class="en-stat-box">
+        <div class="en-stat-num">${totalWords}</div>
+        <div class="en-stat-lbl">累计学习单词</div>
+      </div>
+    </div>
+
+    <div class="en-progress-card">
+      <div class="en-progress-header">
+        <div class="en-progress-title">今日学习进度</div>
+        <div class="en-progress-pct">${progressPct}%</div>
+      </div>
+      <div class="en-progress-bar"><div class="en-progress-fill" style="width:${progressPct}%"></div></div>
+      <div class="en-progress-info">新词 ${learnedToday}/${todayCount} · 复习 0/0</div>
+    </div>
+
+    <div style="font-size:14px;font-weight:600;margin:14px 0 8px;">🗣️ 今日口语对话</div>
     <textarea id="en-dialogue" placeholder="输入今日口语对话内容" style="width:100%;min-height:60px;">${en.dialogue}</textarea>
     <button class="btn btn-outline btn-full" id="en-dialogue-save">保存对话</button>
 
-    <div style="font-size:14px;font-weight:600;margin:12px 0 8px;">💡 地道表达（每行一个）</div>
+    <div style="font-size:14px;font-weight:600;margin:14px 0 8px;">💡 地道表达（每行一个）</div>
     <textarea id="en-expr" placeholder="句子 | 中文 | 使用场景" style="width:100%;min-height:50px;">${en.expressions.join('\n')}</textarea>
     <button class="btn btn-outline btn-full" id="en-expr-save">保存表达</button>
 
@@ -2592,21 +2754,41 @@ function renderEnglishPanel() {
       </div>`;
     }).join('') : ''}
 
-    <div style="font-size:14px;font-weight:600;margin:12px 0 8px;">📖 今日词汇（每行一个）</div>
+    <div style="font-size:14px;font-weight:600;margin:14px 0 8px;">📖 今日词汇（每行一个）</div>
     <textarea id="en-vocab" placeholder="单词 | 音标 | 释义 | 例句" style="width:100%;min-height:50px;">${en.vocab.join('\n')}</textarea>
     <button class="btn btn-outline btn-full" id="en-vocab-save">保存词汇</button>
 
-    ${en.vocab.length > 0 ? en.vocab.map(v => {
-      const parts = v.split('|');
-      return `
-      <div class="vocab-row">
-        <div class="vocab-word">${parts[0] || v}<span class="vocab-phon">${parts[1] || ''}</span></div>
-        ${parts[2] ? `<div class="vocab-mean">${parts[2]}</div>` : ''}
-        ${parts[3] ? `<div class="vocab-ex">${parts[3]}</div>` : ''}
-      </div>`;
-    }).join('') : ''}
+    ${en.vocab.length > 0 ? `<div class="vocab-grid">
+      ${en.vocab.map(v => {
+        const parts = v.split('|');
+        const word = parts[0] || v;
+        const phon = parts[1] || '';
+        const mean = parts[2] || '';
+        const ex = parts[3] || '';
+        const favKey = `vocab_${word}`;
+        const isFav = appData.english.favs && appData.english.favs[favKey];
+        return `
+        <div class="word-card">
+          <div class="word-card-top">
+            <div class="word-card-icons">
+              <span class="word-icon-btn" title="发音">🔊</span>
+              <span class="word-icon-btn word-star${isFav?' active':''}" data-fav-key="${favKey}" title="标星">⭐</span>
+            </div>
+          </div>
+          <div class="word-card-main">
+            <div class="word-text">${word}</div>
+            <div class="word-phon">${phon}</div>
+          </div>
+          <div class="word-card-tip">点击看中文 ↓</div>
+          <div class="word-card-detail" style="display:none;">
+            <div class="word-mean">${mean}</div>
+            ${ex ? `<div class="word-ex">"${ex}"</div>` : ''}
+          </div>
+        </div>`;
+      }).join('')}
+    </div>` : ''}
 
-    <div style="font-size:14px;font-weight:600;margin:12px 0 8px;">🎧 听力训练</div>
+    <div style="font-size:14px;font-weight:600;margin:14px 0 8px;">🎧 听力训练</div>
     <textarea id="en-listening" placeholder="输入今日听力材料信息" style="width:100%;min-height:40px;">${en.listening}</textarea>
     <button class="btn btn-outline btn-full" id="en-listening-save">保存听力</button>
 
@@ -2635,6 +2817,11 @@ function bindEnglishEvents() {
   });
   $('#en-vocab-save')?.addEventListener('click', () => {
     appData.english.vocab = ($('#en-vocab')?.value || '').split('\n').filter(l => l.trim());
+    // 累计学习单词（仅累加新增）
+    if (!appData.english.history) appData.english.history = {};
+    const cur = appData.english.history.total || 0;
+    const newCount = appData.english.vocab.length;
+    appData.english.history.total = Math.max(cur, newCount);
     saveData(appData);
     renderAll();
     switchPanel('english');
@@ -2644,6 +2831,36 @@ function bindEnglishEvents() {
     appData.english.listening = $('#en-listening')?.value || '';
     saveData(appData);
     toast('听力已保存 ✅');
+  });
+
+  // 单词卡片点击展开/收起
+  $$('.word-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      // 标星按钮独立处理
+      if (e.target.closest('.word-star')) return;
+      const detail = card.querySelector('.word-card-detail');
+      const tip = card.querySelector('.word-card-tip');
+      if (detail.style.display === 'none' || !detail.style.display) {
+        detail.style.display = 'block';
+        if (tip) tip.style.display = 'none';
+      } else {
+        detail.style.display = 'none';
+        if (tip) tip.style.display = 'block';
+      }
+    });
+  });
+
+  // 标星按钮
+  $$('.word-star').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const key = btn.dataset.favKey;
+      if (!appData.english.favs) appData.english.favs = {};
+      appData.english.favs[key] = !appData.english.favs[key];
+      btn.classList.toggle('active');
+      saveData(appData);
+      toast(appData.english.favs[key] ? '已标星 ⭐' : '取消标星');
+    });
   });
 }
 
