@@ -24,8 +24,8 @@
     --buzz-border: #E8ECED;
     --text: #2C3E50;
     --text-light: #90A4AE;
-    --shadow: 0 2px 12px rgba(0,0,0,0.06);
-    --radius: 16px;
+    --shadow: 0 2px 14px rgba(0,0,0,0.05);
+    --radius: 24px;
     --nav-width: 76px;
   }
   body {
@@ -94,18 +94,18 @@
     transition: all 0.2s; width: 100%; position: relative;
   }
   .nav-item.active {
-    background: rgba(163,201,16,0.12);
+    background: rgba(163,201,16,0.10);
   }
   .nav-item.active::before {
     content: '';
     position: absolute; left: -8px; top: 50%; transform: translateY(-50%);
-    width: 3px; height: 20px; background: var(--buzz-green);
-    border-radius: 0 3px 3px 0;
+    width: 3px; height: 22px; background: var(--buzz-green-dark);
+    border-radius: 0 4px 4px 0;
   }
   .nav-icon {
-    width: 38px; height: 38px; border-radius: 50%;
+    width: 40px; height: 40px; border-radius: 14px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 17px; transition: all 0.2s;
+    font-size: 18px; transition: all 0.2s;
   }
   .nav-item.active .nav-icon { transform: scale(1.08); }
   .nav-label { font-size: 10px; color: var(--text-light); margin-top: 2px; text-align: center; }
@@ -179,6 +179,43 @@
   }
   .checkin-num { font-size: 24px; font-weight: 700; white-space: nowrap; }
 
+  /* 搜索框 — 小红书风格 */
+  .search-header {
+    display: flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 22px;
+    padding: 9px 12px;
+    margin: 10px 0 6px;
+    position: relative; z-index: 1;
+    border: 1px solid rgba(255,255,255,0.4);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .search-icon { font-size: 13px; color: #999; flex-shrink: 0; }
+  .search-text { font-size: 13px; color: #999; font-weight: 500; white-space: nowrap; }
+  .search-sep { color: #DDD; font-weight: 300; }
+  .search-subtitle {
+    flex: 1; font-size: 12px; color: #666;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    font-weight: 500;
+  }
+  .search-btn {
+    font-size: 12px; color: var(--buzz-green-dark); font-weight: 600;
+    padding: 4px 10px; border-radius: 14px;
+    background: rgba(163,201,16,0.12);
+    flex-shrink: 0;
+  }
+
+  /* 分页指示器 X/7 */
+  .page-indicator {
+    display: flex; align-items: baseline; gap: 1px;
+    font-size: 12px; color: rgba(255,255,255,0.85);
+    font-weight: 600; position: relative; z-index: 1;
+    margin-left: 10px;
+  }
+  .page-indicator #pageIdx { font-size: 14px; font-weight: 700; color: #fff; }
+  .page-sep { opacity: 0.6; padding: 0 1px; font-weight: 400; }
+  .page-total { font-size: 11px; opacity: 0.75; }
+
   /* 内容滚动区 */
   .content-scroll {
     flex: 1; overflow-y: auto; overflow-x: hidden;
@@ -200,8 +237,8 @@
   .card {
     background: var(--buzz-white);
     border-radius: var(--radius);
-    padding: 16px;
-    margin-bottom: 12px;
+    padding: 18px;
+    margin-bottom: 14px;
     box-shadow: var(--shadow);
     border: 1px solid var(--buzz-border);
     position: relative;
@@ -210,9 +247,9 @@
     content: '';
     position: absolute; top: 0; left: 0; right: 0;
     height: 3px;
-    background: linear-gradient(90deg, var(--buzz-green), var(--buzz-purple));
+    background: linear-gradient(90deg, #C5E1A5, #D1C4E9);
     border-radius: var(--radius) var(--radius) 0 0;
-    opacity: 0.5;
+    opacity: 0.6;
   }
   .card-header {
     display: flex; align-items: center; justify-content: space-between;
@@ -220,9 +257,9 @@
   }
   .card-title-row { display: flex; align-items: center; gap: 10px; }
   .card-icon {
-    width: 34px; height: 34px; border-radius: 10px;
+    width: 36px; height: 36px; border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 15px;
+    font-size: 16px;
   }
   .card-title { font-size: 17px; font-weight: 700; }
   .card-subtitle { font-size: 11px; color: var(--text-light); }
@@ -268,11 +305,11 @@
   /* 统计行 */
   .stat-row { display: flex; gap: 8px; margin-top: 8px; }
   .stat-box {
-    flex: 1; background: #F8FAF5; border-radius: 12px;
-    padding: 10px 8px; text-align: center;
+    flex: 1; background: #F8FAF5; border-radius: 16px;
+    padding: 12px 8px; text-align: center;
   }
-  .stat-val { font-size: 18px; font-weight: 700; }
-  .stat-lbl { font-size: 10px; color: var(--text-light); margin-top: 2px; }
+  .stat-val { font-size: 20px; font-weight: 700; }
+  .stat-lbl { font-size: 10px; color: var(--text-light); margin-top: 3px; }
 
   /* 进度条 */
   .mini-bar {
@@ -287,12 +324,12 @@
 
   /* 建议/提示盒 */
   .tip-box {
-    background: #F8FAF5; border-radius: 12px; padding: 12px; margin-top: 10px;
+    background: #F8FAF5; border-radius: 16px; padding: 14px; margin-top: 10px;
     border-left: 3px solid var(--buzz-green);
   }
   .tip-box.blue-border { border-left-color: var(--buzz-purple); }
   .tip-box.orange-border { border-left-color: var(--buzz-orange); }
-  .tip-title { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+  .tip-title { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
   .tip-row { font-size: 12px; color: var(--text-light); margin-bottom: 3px; line-height: 1.5; }
 
   /* 热点条目 */
@@ -341,11 +378,12 @@
   .tag-chip:active { opacity: 0.8; }
 
   .boom-card {
-    background: #fff; border: 1.5px solid #EEE; border-radius: 14px;
-    padding: 12px; margin-top: 8px;
+    background: #fff; border: 1px solid #EEEEEE; border-radius: 18px;
+    padding: 14px; margin-top: 10px;
     transition: box-shadow 0.2s;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.03);
   }
-  .boom-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .boom-card:hover { box-shadow: 0 3px 14px rgba(0,0,0,0.06); }
   .boom-header { display: flex; gap: 10px; align-items: flex-start; }
   .boom-rank {
     flex-shrink: 0; width: 28px; height: 28px; border-radius: 8px;
@@ -428,7 +466,7 @@
   /* 按钮 */
   .btn {
     display: inline-flex; align-items: center; gap: 5px;
-    padding: 7px 16px; border-radius: 20px; font-size: 13px;
+    padding: 8px 18px; border-radius: 22px; font-size: 13px;
     font-weight: 600; border: none; cursor: pointer; transition: all 0.2s;
     font-family: inherit;
   }
@@ -439,9 +477,9 @@
   .btn-outline {
     background: #fff; color: var(--buzz-green-dark); border: 1.5px solid var(--buzz-green-dark);
   }
-  .btn-sm { padding: 5px 12px; font-size: 11px; }
+  .btn-sm { padding: 5px 12px; font-size: 11px; border-radius: 16px; }
   .btn-danger { background: #FFEBEE; color: var(--buzz-red); border: 1px solid #FFCDD2; }
-  .btn-full { width: 100%; justify-content: center; margin-top: 8px; }
+  .btn-full { width: 100%; justify-content: center; margin-top: 8px; border-radius: 24px; }
 
   /* 日程行 */
   .sched-row {
@@ -882,6 +920,11 @@
     <div class="header-bar">
       <div class="header-row">
         <div class="header-title" id="panelTitle">🚀 每日饮食</div>
+        <div class="page-indicator">
+          <span id="pageIdx">1</span>
+          <span class="page-sep">/</span>
+          <span class="page-total" id="pageTotal">7</span>
+        </div>
         <!-- 三眼仔卡通 -->
         <div class="alien-header-decor">
           <div class="alien-toy">
@@ -897,6 +940,14 @@
           <span class="date-num" id="headerDay">7/31</span>
           <span id="headerWeekday">周五</span>
         </div>
+      </div>
+      <!-- 搜索框 -->
+      <div class="search-header">
+        <span class="search-icon">🔍</span>
+        <span class="search-text">搜索你想看的</span>
+        <span class="search-sep">|</span>
+        <span class="search-subtitle" id="searchSubtitle">营养摄入 · 每日规划 · 体重管理</span>
+        <span class="search-btn">搜索</span>
       </div>
       <div class="checkin-mini">
         <div class="checkin-progress-wrap">
@@ -1014,7 +1065,7 @@ function saveData(data) {
 
 // 内容版本号——定时任务更新 news/english/douyin/idea 时改这个值
 // 页面加载时如果版本号变了，自动用最新默认数据覆盖内容模块
-const CONTENT_VERSION = '2026-08-03-v3';
+const CONTENT_VERSION = '2026-08-03-v4';
 
 function syncContentData(data) {
   if (!data._contentVer || data._contentVer !== CONTENT_VERSION) {
@@ -1091,6 +1142,24 @@ const panelTitles = {
   douyin: '🚀 抖音爆款', account: '🚀 我的账户', english: '🚀 英语学习', todo: '🚀 每日待办'
 };
 
+const panelSubtitles = {
+  diet: '营养摄入 · 每日规划 · 体重管理',
+  news: '财经要闻 · 政策解读 · 市场分析',
+  idea: '爆款选题 · 二创灵感 · 发布建议',
+  douyin: '爆款视频 · 赛道分析 · 二创建议',
+  account: '每日开支 · 累积汇总 · 月度复盘',
+  english: '口语对话 · 地道表达 · 词汇听力',
+  todo: '每日任务 · 优先级 · 完成进度'
+};
+
+function updatePageIndicator(panel) {
+  const panels = Object.keys(panelTitles);
+  const idx = panels.indexOf(panel) + 1;
+  $('#pageIdx').textContent = idx;
+  $('#pageTotal').textContent = panels.length;
+  $('#searchSubtitle').textContent = panelSubtitles[panel] || '';
+}
+
 $('#sidebar').addEventListener('click', (e) => {
   const navItem = e.target.closest('.nav-item');
   if (!navItem) return;
@@ -1105,6 +1174,7 @@ function switchPanel(panel) {
   $$('.module-panel').forEach(p => p.classList.remove('active'));
   const target = $('#panel-' + panel);
   if (target) target.classList.add('active');
+  updatePageIndicator(panel);
   $('#contentScroll').scrollTop = 0;
 }
 
